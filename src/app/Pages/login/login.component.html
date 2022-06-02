@@ -1,0 +1,39 @@
+<!-- <app-home></app-home> -->
+<body class="container" style="background-color: #e3f2fd;">
+<div class="bootstrap-wrapper" >
+    <div class="container">
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-md-6 offset-md-3">
+                <div class="container text-center">
+                    <img src="favicon.ico" alt="">
+                </div>
+                <h1 class="text-center">Admin Login</h1>
+                
+                <form #userForm="ngForm" (ngSubmit)="dologin()" >
+    
+                    <div class="form-group">
+                      <label for="">Username</label>
+                      <input type="text"  required #adminUsername="ngModel" 
+                      [class.is-invalid]="adminUsername.invalid && adminUsername.touched" class="form-control" name="username" [(ngModel)]="adminModel.adminUsername">
+                       <small class="text-danger" [class.d-none]="adminUsername.valid || adminUsername.untouched" >Username is required</small>   
+                     </div> 
+
+                     <div class="form-group mb-2">
+                        <label for="">Password</label>
+                        <input type="password"  required #adminpassword="ngModel" 
+                        [class.is-invalid]="adminpassword.invalid && adminpassword.touched" class="form-control" name="password" [(ngModel)]="adminModel.adminpassword">
+                         <small class="text-danger" [class.d-none]="adminpassword.valid || adminpassword.untouched" >Password is required</small>   
+                     </div> 
+                    
+                     <button [disabled]="userForm.form.invalid" class="btn btn-primary" type="submit">Login</button>
+                      <a href=""  style="margin-left: 10px;"><button  class="btn btn-primary" routerLink="/adminReset">Forgot Password</button></a>
+
+                      <div class="form-group mb-2"><br>
+                        <a href="" routerLink="/login"><button  class="btn btn-warning" type="#">User Login</button></a>
+                     </div> 
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>

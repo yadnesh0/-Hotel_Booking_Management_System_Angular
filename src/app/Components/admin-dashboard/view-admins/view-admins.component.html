@@ -1,0 +1,20 @@
+<div class="container text-center mt-5" style="background-color: #e3f2fd;">
+<table  class="table">
+    <tr>
+        <th scope="col"> Admin Id </th>
+        <th scope="col"> Admin Username </th>       
+    </tr>
+    <tr *ngFor="let admin of admins">
+     
+        <td scope="row"> {{admin.adminId }}</td>
+        <td> {{admin.adminUsername }}</td>    
+    </tr>
+
+</table>
+
+
+<div class="text-center mt-3 mb-5">
+    <a  style="margin-left: 10px;"><button  class="btn btn-primary" routerLink="/adminDash">Admin Menu</button></a>
+</div>
+    
+</div>
