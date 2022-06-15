@@ -1,0 +1,72 @@
+
+<app-navbar></app-navbar>
+<div class="row mt-5">
+    <div class="col-md-6 offset-md-3">
+      <mat-card>
+        <p>Booking Details</p>
+ <form #userForm="ngForm" >
+  
+    <!-- <div class="form-group">
+      <mat-form-field appearance="fill">
+       <mat-label>Enter a date range</mat-label>
+       <mat-date-range-input [rangePicker]="picker">
+         <input matStartDate placeholder="Start date" required #bookedFrom="ngModel" id="bookedFrom" min="{{minDate}}"  max="{{maxDate}}"
+         [class.is-invalid]="bookedFrom.invalid && bookedFrom.touched" class="form-control" name="bookedFrom" [(ngModel)]="booking.bookedFrom">
+         
+         <input matEndDate placeholder="End date" required #bookedTo="ngModel" id="bookedTo" min="{{minDate}}" max="{{maxDate}}"
+         [class.is-invalid]="bookedTo.invalid && bookedTo.touched" class="form-control" name="bookedTo" [(ngModel)]="booking.bookedTo">
+       </mat-date-range-input>
+       <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+       <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+      </div> -->
+      
+    <div class="form-group mb-3" >
+      <label for="">Book From</label>
+      <input type="date"  required #bookedFrom="ngModel" id="bookedFrom" min="{{minDate}}"  max="{{maxDate}}" 
+      [class.is-invalid]="bookedFrom.invalid && bookedFrom.touched" class="form-control" name="bookedFrom" [(ngModel)]="booking.bookedFrom">
+       <small class="text-danger" [class.d-none]="bookedFrom.valid || bookedFrom.untouched" >Date is required</small>   
+     </div> 
+     
+     <div class="form-group mb-3">
+      <label for="">Book To</label>
+      <input type="date"  required #bookedTo="ngModel" id="bookedTo" min="{{minDate}}" max="{{maxDate}}" 
+      [class.is-invalid]="bookedTo.invalid && bookedTo.touched" class="form-control" name="bookedTo" [(ngModel)]="booking.bookedTo">
+       <small class="text-danger" [class.d-none]="bookedTo.valid || bookedTo.untouched" >Date is required</small>   
+     </div> 
+     
+
+     <div class="form-group mb-3">
+      <label for="">Adult</label>
+      <input type="number"  required #noOfAdults="ngModel" min="1" max="4"
+      [class.is-invalid]="noOfAdults.invalid && noOfAdults.touched" class="form-control" name="noOfAdults" [(ngModel)]="booking.noOfAdults">
+       <small class="text-danger" [class.d-none]="noOfAdults.valid || noOfAdults.untouched" >Count is required</small>   
+     </div> 
+     <div class="form-group mb-3">
+      <label for="">Children</label> 
+      <input type="number"  required #noOfChildren="ngModel" min="0" max="2" 
+      [class.is-invalid]="noOfChildren.invalid && noOfChildren.touched" class="form-control" name="noOfChildren" [(ngModel)]="booking.noOfChildren">
+       <small class="text-danger" [class.d-none]="noOfChildren.valid || noOfChildren.untouched" >Count is required</small>   
+     </div> 
+    
+     <div class="text-center mt-3">
+      <button  [disabled]="userForm.form.invalid"
+       (click)="calculate(this.booking.bookedFrom,this.booking.bookedTo)" class="btn btn-primary" type="submit">Calculate amount</button>
+    </div>
+
+     <div class="form-group mb-2" > 
+      <div class="text-center mt-3">
+        <label for="">Amount</label> 
+        {{this.booking.amount | currency:"INR"}}
+      </div>   
+     </div>
+
+     <div class="text-center mt-2">
+      <button [disabled]="userForm.form.invalid" (click)="enabled=true" (click)="transaction()" class="btn btn-primary" type="submit">Proceed To Payment</button>
+    </div>
+     
+    </form>
+  </mat-card>
+  </div>
+</div>

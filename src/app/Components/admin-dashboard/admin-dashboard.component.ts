@@ -1,8 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
-import { LogoutResponse } from './logoutResponse';
+
 import Swal from 'sweetalert2';
+import { LogoutResponse } from './LogoutResponse';
 
 @Component({
   selector: 'app-admin-dashboard',

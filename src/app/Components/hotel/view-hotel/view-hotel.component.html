@@ -1,0 +1,55 @@
+<div class="text-center">
+  <mat-form-field appearance="fill">
+   <mat-label>Sort By</mat-label>
+   <mat-select>
+     <mat-option *ngFor="let sort of sorts" [value]="sort" (click)="sortHotels(this.sort)">
+       {{sort}}
+     </mat-option>
+   </mat-select>
+ </mat-form-field>
+ 
+ <mat-form-field appearance="fill">
+  <mat-label>Filter By</mat-label>
+  <mat-select>
+    <mat-option *ngFor="let filter of filters" [value]="filter" (click)="filterHotels(this.filter)">
+      {{filter}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+</div>
+<div class="row">
+  <div class="col-md-10 offset-md-1">
+ <mat-card *ngFor="let hotel of hotels" class="mt-3">
+  <div class="row">
+  <div class="col-md-4 offset-md-2">
+
+   <p> Hotel Id    : {{hotel.hotelId}} </p>
+   <p> Address     : {{hotel.address}}</p>
+   <p> Phone 1     : {{hotel.phone1}}</p>
+   <p> Website     : {{hotel.website}}</p>
+   <p> Description : {{hotel.description}}</p>
+
+  </div>
+
+  <div class="col-md-4 offset-md-1">
+    <p> Hotel Name  : {{hotel.hotelName}}</p>
+    <p> City        : {{hotel.city}}</p>
+    <p> Phone 2     : {{hotel.phone2}}</p>
+    <p> Email       : {{hotel.email | lowercase}}</p>
+    <p> Average Rate: {{hotel.avgRatePerDay | currency:"INR"}}</p>
+  </div>
+</div>
+
+   <div class="text-center mt-3">
+    <button  mat-raised-button color="primary" (click)="getRoomsBy(this.hotel)">View Rooms</button>
+    <button class="ml-20" mat-raised-button color="primary" (click)="editHotel(this.hotel)">Update Hotel</button>
+  </div>
+ 
+ </mat-card>
+       <mat-card *ngIf="hotels.length==0" class="mt-3">
+         <div class="text-center">
+            <h1>No Hotels in the Selected City</h1>
+         </div>
+       </mat-card>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserModel } from 'src/app/Components/customer/user-model';
 import { UserService } from 'src/app/services/user.service';
-import {  UserModels } from 'src/app/user-model';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 })
 export class SignupComponent implements OnInit {
 
-  userModel = new UserModels('','','','','');
+  userModel = new UserModel(0,'','','','','');
 
   constructor(
           private userService:UserService) { }

@@ -1,0 +1,70 @@
+<div class="container" >
+    <div class="row" >
+        <div class="col-md-6 offset-md-3">
+            
+            <h1 class="text-center">Add Room</h1>
+
+            <form #userForm="ngForm" (ngSubmit)="room()">
+
+                <div class="form-group">
+                  <label for="">Room Id</label>
+                  <input type="text"  required #roomId="ngModel" 
+                  [class.is-invalid]="roomId.invalid && roomId.touched" class="form-control" name="roomId" [(ngModel)]="roomModel.roomId">
+                   <small class="text-danger" [class.d-none]="roomId.valid || roomId.untouched" >Room Id is required</small>   
+                 </div> 
+                 
+                 <div class="form-group">
+                    <label for="">Room No</label>
+                    <input type="text"  required #roomNo="ngModel" 
+                    [class.is-invalid]="roomNo.invalid && roomNo.touched" class="form-control" name="roomNo" [(ngModel)]="roomModel.roomNo">
+                     <small class="text-danger" [class.d-none]="roomNo.valid || roomNo.untouched" >Room No is required</small>   
+                </div> 
+
+                <div class="form-group">
+                    <label for="">Room Type</label>
+                    <input type="text"  required #roomType="ngModel" 
+                    [class.is-invalid]="roomType.invalid && roomType.touched" class="form-control" name="roomType" [(ngModel)]="roomModel.roomType">
+                     <small class="text-danger" [class.d-none]="roomType.valid || roomType.untouched" >Room Type is required</small>   
+                </div> 
+
+                <div class="form-group mb-3">
+                    <label for="">Rate Per Day</label>
+                    <input type="text"  required #ratePerDay="ngModel" 
+                    [class.is-invalid]="ratePerDay.invalid && ratePerDay.touched" class="form-control" name="ratePerDay" [(ngModel)]="roomModel.ratePerDay">
+                     <small class="text-danger" [class.d-none]="ratePerDay.valid || ratePerDay.untouched" >Rate is required</small>   
+                </div> 
+                
+                <!-- <div class="form-group mb-3" >
+                    <label for="">Select Hotel Id</label><br>
+                    <select (blur)="validateHotel(hotel.hotelId)" (change)="validateHotel(hotel.hotelId)" #hotelId="ngModel" 
+                      (blur)="getHotels()"
+                      [class.is-invalid]="hotelHasError && hotelId.touched" name="" class="custom-select" name="hotelId" [(ngModel)]="hotel.hotelId">
+                       <option value="default">Hotel Id</option>
+                       <option *ngFor="let hotel of hotels">{{ hotel.hotelId }}</option>
+                    </select>
+                    <small class="text-danger" [class.d-none]="!hotelHasError || hotelId.untouched">Please choose a Hotel</small>
+                   </div>    -->
+
+                <div class="form-group mb-3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Select Hotel Id</mat-label>
+                        <mat-select (blur)="validateHotel(hotel.hotelId)" (change)="validateHotel(hotel.hotelId)" #hotelId="ngModel" 
+                        (click)="getHotels()"
+                        [class.is-invalid]="hotelHasError && hotelId.touched" name="" class="custom-select" name="hotelId" [(ngModel)]="hotel.hotelId">
+                          <mat-option *ngFor="let hotel of hotels" [value]="hotel.hotelId" >
+                            {{hotel.hotelName}} -- Id:{{hotel.hotelId}}  
+                          </mat-option>
+                        </mat-select>
+                        <small class="text-danger" [class.d-none]="!hotelHasError || hotelId.untouched">Please choose a Hotel</small>
+                      </mat-form-field>
+                </div>
+                
+                 <div class="text-center">
+                 <button [disabled]="userForm.form.invalid" class="btn btn-primary" type="submit">Add</button>
+                </div>
+                
+            </form>
+
+        </div>
+    </div>
+</div>

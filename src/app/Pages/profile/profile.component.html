@@ -1,0 +1,33 @@
+<div class="row mt-5">
+    <div class="col-md-10 offset-md-1 ">
+      <div class="text-center">
+        <mat-card>
+            <h1>Welcome To Admin Dashboard</h1>
+        </mat-card>
+      </div>
+        <mat-card *ngIf="admin" class="mt">
+          <div class="text-center">
+          <h1>Your Profile Details</h1>
+        </div>
+          <div class="row mt-5">
+            <div class="col-md-4 offset-md-2">
+          
+             <p>Admin Id:</p>
+             <p>Admin Username:</p>
+
+            </div>
+          
+            <div class="col-md-4 offset-md-2">
+              <p>{{admin.adminId}}</p>
+              <p>{{admin.adminUsername}}</p>
+              
+            </div>
+          </div>
+      
+          <mat-card-actions class="text-center mt-2 mb-3">
+            <button mat-raised-button color="primary" (click)="editAdmin(this.admin)">UPDATE</button>
+          </mat-card-actions>
+        </mat-card>
+      
+     </div>
+</div>

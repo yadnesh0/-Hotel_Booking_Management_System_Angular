@@ -1,0 +1,61 @@
+<mat-card *ngFor="let payment of payments" class="mt-3">
+    <p> Payment Id    : {{payment.paymentId}} </p>
+    
+    <mat-accordion>
+        <mat-expansion-panel hideToggle class="mt-3">
+          <mat-expansion-panel-header >
+            <mat-panel-title>
+              <button mat-list-item (click)="getTransactionPay(this.payment.paymentId)">
+                 <mat-icon mat-list-icon>receipt_long</mat-icon> 
+                 Transaction
+              </button>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-card class="mt-3 bg-light">
+            <p> Transaction Id : {{transactions.transaction_id}}</p>
+            <p> Amount   : {{transactions.amount  | currency:"INR"}}</p>
+          </mat-card>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <mat-accordion>
+        <mat-expansion-panel hideToggle class="mt-3">
+          <mat-expansion-panel-header >
+            <mat-panel-title>
+              <button mat-list-item (click)="getBookingPay(this.payment.paymentId)">
+                 <mat-icon mat-list-icon>book_online</mat-icon> 
+                 Booking Details
+              </button>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-card class="mt-3 bg-light">
+            <p> Booking Id  : {{booking.bookingId}} </p>
+            <p> Booked From : {{booking.bookedFrom}}</p>
+            <p> Booked To   : {{booking.bookedTo}}</p>
+            <p> Adults      : {{booking.noOfAdults }}</p>
+            <p> Children    : {{booking.noOfChildren}}</p>
+            <p> Amount      : {{booking.amount | currency:"INR"}}</p>
+          </mat-card>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <!-- <mat-accordion>
+        <mat-expansion-panel hideToggle class="mt-3">
+          <mat-expansion-panel-header >
+            <mat-panel-title>
+              <button mat-list-item (click)="getUserByBooking(booking.bookingId)">
+                 <mat-icon mat-list-icon>person</mat-icon> 
+                 User
+              </button>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-card class="mt-3 bg-light">
+            <p> UserName : {{user.userName}}</p>
+            <p> Email    : {{user.email  | lowercase}}</p>
+            <p> Mobile   : {{user.mobile}}</p>
+            <p> Address   : {{user.address}}</p>
+          </mat-card>
+        </mat-expansion-panel>
+      </mat-accordion> -->
+  
+  </mat-card>

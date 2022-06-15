@@ -12,12 +12,12 @@ import Swal from 'sweetalert2';
 })
 export class LoginComponent implements OnInit {
 
-  adminModel = new AdminModel('','');
+  adminModel = new AdminModel(0,'','');
   
-  @Output() loginAcknowlegment= new EventEmitter<LoginResponseDetails>();
+  // @Output() loginAcknowlegment= new EventEmitter<LoginResponseDetails>();
   
   responseStatus:LoginResponseDetails=<LoginResponseDetails>{}
-
+  
   constructor(
        private adminService: AdminService,
        private router: Router
@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  
   dologin(){
     console.log("Login Button clicked")
     
@@ -35,12 +35,14 @@ export class LoginComponent implements OnInit {
     this.adminService.login(this.adminModel).subscribe(
       data=>{
         console.log('After login from spring boot service :- '+data)
-        this.responseStatus === data;
+        // this.responseStatus = data;
+        this.adminModel = data;
+        console.log(this.adminModel);
         console.log('Response Status '+this.responseStatus.status+" - "+this.responseStatus.adminUsername)
-        
+        this.adminService.setAdmin(this.adminModel);
         if(this.responseStatus.adminUsername!= 'invalid')
         {
-          this.loginAcknowlegment.emit(this.responseStatus);
+          // this.loginAcknowlegment.emit(this.responseStatus);
 
           if(this.responseStatus)
           {
@@ -55,6 +57,7 @@ export class LoginComponent implements OnInit {
         // alert("Invalid details")
         Swal.fire('Invalid Credentials','Login Failed','error')
       })
+
   };
 
 }

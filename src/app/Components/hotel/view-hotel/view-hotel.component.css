@@ -1,0 +1,9 @@
+.mat-form-field + .mat-form-field {
+    margin-left: 8px;
+  }
+.ml-20{
+    margin-left: 20px;
+  }
+.ml-300{
+  margin-left: 300px;
+}

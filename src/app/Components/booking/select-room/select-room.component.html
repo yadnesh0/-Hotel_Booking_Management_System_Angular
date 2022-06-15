@@ -1,0 +1,31 @@
+<app-navbar></app-navbar>
+<div class="text-center mt-3">
+    <mat-form-field appearance="fill">
+     <mat-label>Sort By</mat-label>
+     <mat-select>
+       <mat-option *ngFor="let sort of sorts" [value]="sort" (click)="sortRooms(this.sort)">
+         {{sort}}
+       </mat-option>
+     </mat-select>
+   </mat-form-field>
+   </div>
+   
+   <div class="row">
+      <div class="col-md-8 offset-md-2">
+         <mat-card *ngFor="let room of rooms" class="mt-3 ml-5">
+           <p> Hotel Name  : {{room.hotel.hotelName | titlecase }}</p>
+           <p class="mt-3"> Room Id     : {{room.roomId}} </p>
+           <p> Room No     : {{room.roomNo}}</p>
+           <p> Room Type   : {{room.roomType | titlecase }}</p>
+           <p> Rate Per Day: <b>{{room.ratePerDay | currency:"INR"}}</b></p>
+           <p> Is Available: {{room.available | yesNo}}</p>
+       
+                   <button mat-raised-button color="primary" *ngIf="this.room.available"
+                    (click)="proccedToBook(this.room)">
+                     <!-- <mat-icon mat-list-icon>expand_circle_down</mat-icon>  -->
+                     Book Now
+                   </button>
+         </mat-card>
+        </div>
+     </div>
+   

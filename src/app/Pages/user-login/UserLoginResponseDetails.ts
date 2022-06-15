@@ -1,4 +1,5 @@
-export interface UserLoginResponseDetails {
+export interface UserLoginResponseDetails{
     userName:string;
     status:boolean;
+
 }

@@ -1,9 +1,10 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
-import { UserModels } from 'src/app/user-model';
-import { UserLoginResponseDetails } from './UserLoginResponseDetails';
 import Swal from 'sweetalert2';
+import { UserModel } from 'src/app/Components/customer/user-model';
+import { first } from 'rxjs';
+import { UserLoginResponseDetails } from './UserLoginResponseDetails';
 
 @Component({
   selector: 'app-user-login',
@@ -11,8 +12,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./user-login.component.css']
 })
 export class UserLoginComponent implements OnInit {
-  userModel = new UserModels('','','','','');
-  
+  userModel = new UserModel(0,'','','','','');
+  user :any;
   @Output() loginAcknowlegment= new EventEmitter<UserLoginResponseDetails>();
   
   responseStatus:UserLoginResponseDetails=<UserLoginResponseDetails>{}
@@ -34,9 +35,12 @@ export class UserLoginComponent implements OnInit {
     this.userService.login(this.userModel).subscribe(
       data=>{
         console.log('After login from spring boot service :- '+data)
-        this.responseStatus === data;
+        // this.responseStatus === data;
+        this.user = data;
+        console.log(this.user);
         console.log('Response Status '+this.responseStatus.status+" - "+this.responseStatus.userName)
-        
+        console.log(this.user)
+        this.userService.setUser(this.user);
         if(this.responseStatus.userName!= 'invalid')
         {
           this.loginAcknowlegment.emit(this.responseStatus);
@@ -45,6 +49,7 @@ export class UserLoginComponent implements OnInit {
           {
             Swal.fire('Login Successful','Welcome '+this.userModel.userName,'success')
             this.router.navigate(['welcome']);
+  
           }
         }
     
@@ -55,6 +60,5 @@ export class UserLoginComponent implements OnInit {
         Swal.fire('Invalid Credentials','Login Failed','error')
 
       })
-  };
-
+    }
 }
